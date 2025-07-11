@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo - Itsnope</title>
+</head>
+<body>
+  
+  <section class="main-wrap">
+    <h1>Todo List</h1>
+    <div class="content">
+      <div class="todo-form">
+        <form action="post">
+          <input type="text" id="task" placeholder="Add your task..." required>
+          <input type="date" id="date" required>
+          <button type="button">ADD</button>
+        </form>
+      </div>
+      <div class="todo-table-actions">
+        <button type="button">FILTER</button>
+        <button type="button">DELETE ALL</button>
+      </div>
+      <div class="todo-table">
+        <table>
+          <thead>
+            <tr>
+              <th>TASK</th>
+              <th>DUE DATE</th>
+              <th>STATUS</th>
+              <th>ACTONS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="4" style="text-align: center;">No task found</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  
+</body>
+</html>
