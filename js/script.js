@@ -1,4 +1,5 @@
 let tasks = [];
+displayTasks();
 
 const addTask = () => {
   const taskInput = document.getElementById('task-input');
@@ -56,4 +57,9 @@ const displayTasks = () => {
   }
 };
 
-displayTasks();
+const deleteAllTasks = () => {
+  if (confirm('Are you sure you want to delete all tasks?')) {
+    tasks = [];
+    displayTasks();
+  }
+};
