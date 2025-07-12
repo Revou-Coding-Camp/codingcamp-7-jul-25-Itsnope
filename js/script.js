@@ -25,5 +25,35 @@ const addTask = () => {
 
     // Log task baru ke konsol (atau bisa ditambahkan ke tabel)
     console.log('Task added:', newTask);
+    displayTasks();
   };
 };
+
+const displayTasks = () => {
+  const taskRow = document.getElementById('task-row');
+
+  // Kosongkan tabel sebelum menampilkan ulang
+  taskRow.innerHTML = '';
+
+  if (tasks.length === 0) {
+    const noTaskRow = document.createElement('tr');
+    noTaskRow.innerHTML = '<td colspan="4" style="text-align: center;">No task found</td>';
+    taskRow.appendChild(noTaskRow);
+  } else {
+    tasks.forEach((task, index) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${task.task}</td>
+        <td>${task.date}</td>
+        <td>${task.completed ? 'Completed' : 'Pending'}</td>
+        <td>
+          <button onclick="toggleStatus(${index})">Toggle Status</button>
+          <button onclick="deleteTask(${index})">Delete</button>
+        </td>
+      `;
+      taskRow.appendChild(row);
+    });
+  }
+};
+
+displayTasks();
