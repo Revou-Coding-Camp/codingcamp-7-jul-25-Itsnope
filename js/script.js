@@ -1,5 +1,4 @@
 let tasks = [];
-displayTasks();
 
 const addTask = () => {
   const taskInput = document.getElementById('task-input');
@@ -30,6 +29,7 @@ const addTask = () => {
   };
 };
 
+
 const displayTasks = () => {
   const taskRow = document.getElementById('task-row');
 
@@ -48,7 +48,7 @@ const displayTasks = () => {
         <td>${task.date}</td>
         <td>${task.completed ? 'Completed' : 'Pending'}</td>
         <td>
-          <button onclick="toggleStatus(${index})">Toggle Status</button>
+          ${!task.completed ? `<button onclick="toggleStatus(${index})">Toggle Status</button>` : ''}
           <button onclick="deleteTask(${index})">Delete</button>
         </td>
       `;
@@ -57,9 +57,23 @@ const displayTasks = () => {
   }
 };
 
+displayTasks();
+
 const deleteAllTasks = () => {
   if (confirm('Are you sure you want to delete all tasks?')) {
     tasks = [];
+    displayTasks();
+  }
+};
+
+const toggleStatus = (index) => {
+  tasks[index].completed = !tasks[index].completed;
+  displayTasks();
+};
+
+const deleteTask = (index) => {
+  if (confirm('Are you sure you want to delete this task?')) {
+    tasks.splice(index, 1);
     displayTasks();
   }
 };
