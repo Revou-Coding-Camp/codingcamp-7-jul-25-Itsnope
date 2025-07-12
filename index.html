@@ -19,7 +19,12 @@
         </form>
       </div>
       <div class="todo-table-actions">
-        <button type="button" onclick="filterTasks()">FILTER</button>
+       <button type="button" onclick="toggleFilter()">FILTER</button>
+        <select id="filter-status" onchange="filterTasks()" style="display:none;">
+          <option value="all">All</option>
+          <option value="completed">Completed</option>
+          <option value="pending">Pending</option>
+        </select>
         <button type="button" onclick="deleteAllTasks()">DELETE ALL</button>
       </div>
       <div class="todo-table">

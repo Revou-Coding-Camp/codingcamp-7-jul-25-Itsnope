@@ -59,6 +59,47 @@ const displayTasks = () => {
 
 displayTasks();
 
+const toggleFilter = () => {
+  const filterSelect = document.getElementById('filter-status');
+  filterSelect.style.display = filterSelect.style.display === 'none' ? 'inline' : 'none';
+};
+
+const filterTasks = () => {
+  const status = document.getElementById('filter-status').value;
+  let filtered;
+
+  if (status === 'completed') {
+    filtered = tasks.filter(task => task.completed === true);
+  } else if (status === 'pending') {
+    filtered = tasks.filter(task => task.completed === false);
+  } else {
+    filtered = tasks; // 'all'
+  }
+
+  const taskRow = document.getElementById('task-row');
+  taskRow.innerHTML = '';
+
+  if (filtered.length === 0) {
+    const noTaskRow = document.createElement('tr');
+    noTaskRow.innerHTML = `<td colspan="4" style="text-align: center;">No ${status} task found</td>`;
+    taskRow.appendChild(noTaskRow);
+  } else {
+    filtered.forEach((task) => {
+      const row = document.createElement('tr');
+      row.innerHTML = `
+        <td>${task.task}</td>
+        <td>${task.date}</td>
+        <td>${task.completed ? 'Completed' : 'Pending'}</td>
+        <td>
+          ${!task.completed ? `<button onclick="toggleStatus(${tasks.indexOf(task)})">Toggle Status</button>` : ''}
+          <button onclick="deleteTask(${tasks.indexOf(task)})">Delete</button>
+        </td>
+      `;
+      taskRow.appendChild(row);
+    });
+  }
+};
+
 const deleteAllTasks = () => {
   if (confirm('Are you sure you want to delete all tasks?')) {
     tasks = [];
